@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  github-runner:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - runner_data:/home/docker/actions-runner
+    restart: unless-stopped
+
+volumes:
+  runner_data:
+    driver: local
