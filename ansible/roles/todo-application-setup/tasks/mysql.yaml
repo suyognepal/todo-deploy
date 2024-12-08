@@ -1,0 +1,26 @@
+---
+- name: Add the Ondrej PHP repository
+  apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+    update_cache: yes
+
+- name: Install PHP {{ php_version }} and modules
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
+    update_cache: yes
+  loop: 
+    - "php{{ php_version }}"
+    - "php{{ php_version }}-cli"
+    - "php{{ php_version }}-fpm"
+  loop_control:
+    extended: yes
+  notify: restart_php
+
+- name: Install PHP additional modules
+  apt:
+    name: "php{{ php_version }}-{{ item }}"
+    state: present
+  loop: "{{ php_modules }}"

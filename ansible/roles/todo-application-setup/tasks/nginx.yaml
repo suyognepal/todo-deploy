@@ -1,0 +1,19 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Create phpinfo.php from template
+  template:
+    src: phpinfo.php.j2
+    dest: "/var/www/html/phpinfo.php"
+    mode: '0644'
+
+- name: Configure Nginx from template
+  template:
+    src: nginx.conf.j2
+    dest: "/etc/nginx/sites-available/default"
+    mode: '0644'
+  notify: restart_nginx
+

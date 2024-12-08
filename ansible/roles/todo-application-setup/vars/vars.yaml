@@ -1,0 +1,21 @@
+# MySQL Conf
+mysql_version: "8.0"
+mysql_root_password: "test@123#"
+todo_db_name: "todo"
+todo_db_user: "todo_user"
+todo_db_password: "todo@123#"
+
+# PHP Conf
+php_version: "8.3"
+php_modules:
+  - bz2
+  - curl
+  - mbstring
+  - intl
+  - dom
+  - xml
+  - fpm
+  - mysql
+  - sqlite
+
+

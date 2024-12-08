@@ -1,0 +1,14 @@
+---
+- name: update_apt_cache
+  apt:
+    update_cache: yes
+
+- name: restart_php
+  service:
+    name: "php{{ php_version }}-fpm"
+    state: restarted
+
+- name: restart_nginx
+  service:
+    name: nginx
+    state: restarted
